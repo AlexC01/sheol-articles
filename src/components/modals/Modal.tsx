@@ -36,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({
   const handleClose = useCallback(() => {
     if (disabled) return;
 
-    setShowModal(true);
+    setShowModal(false);
     setTimeout(() => {
       onClose();
     }, 300);
@@ -124,7 +124,7 @@ const Modal: React.FC<ModalProps> = ({
               <button onClick={handleClose} className="btn btn-sm btn-circle btn-ghost absolute right-6 text-black">
                 X
               </button>
-              <div className="text-lg font-semibold">{title}</div>
+              <div className="text-lg font-semibold text-black">{title}</div>
             </div>
             <div className="relative p-6 flex-auto">{body}</div>
             <div className="flex flex-col gap-2 p-6">

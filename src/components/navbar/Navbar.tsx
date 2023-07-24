@@ -1,6 +1,10 @@
+"use client";
+
+import useRegisterModal from "@/hooks/useRegisterModal";
 import Image from "next/image";
 
 const Navbar = () => {
+  const registerModal = useRegisterModal();
   return (
     <nav className="navbar m-auto max-w-[1920px] ">
       <div className="navbar-start">
@@ -19,8 +23,8 @@ const Navbar = () => {
               <Image src="/user.png" alt="avatar" width={32} height={32} />
             </div>
           </label>
-          <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-            <li>
+          <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+            <li onClick={registerModal.onOpen}>
               <a>Sign Up</a>
             </li>
             <li>
