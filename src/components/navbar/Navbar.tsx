@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="navbar m-auto max-w-[1920px] ">
       <div className="navbar-start">
-        <span className="btn btn-ghost normal-case text-xl">Sheol-Blogs</span>
+        <span className="btn btn-ghost normal-case text-xl">Sheol-Articles</span>
       </div>
       <div className="navbar-center">
         <div className="form-control">
@@ -21,13 +21,10 @@ const Navbar = () => {
           </label>
           <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
             <li>
-              <a>Profile</a>
+              <a>Sign Up</a>
             </li>
             <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
+              <a>Log In</a>
             </li>
           </ul>
         </div>
