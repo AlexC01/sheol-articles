@@ -2,9 +2,15 @@
 
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import { User } from "@prisma/client";
 import Image from "next/image";
+import { signOut } from "next-auth/react";
 
-const Navbar = () => {
+interface NavbarProps {
+  currentUser?: User | null;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
 
@@ -27,12 +33,29 @@ const Navbar = () => {
             </div>
           </label>
           <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-            <li onClick={registerModal.onOpen}>
-              <a>Sign Up</a>
-            </li>
-            <li>
-              <a onClick={loginModal.onOpen}>Log In</a>
-            </li>
+            {!currentUser && (
+              <>
+                <li>
+                  <a onClick={registerModal.onOpen}>Sign Up</a>
+                </li>
+                <li>
+                  <a onClick={loginModal.onOpen}>Log In</a>
+                </li>
+              </>
+            )}
+            {currentUser && (
+              <>
+                <li>
+                  <a>My Profile</a>
+                </li>
+                <li>
+                  <a>My Articles</a>
+                </li>
+                <li>
+                  <a onClick={() => signOut()}>Log Out</a>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
