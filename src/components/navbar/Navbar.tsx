@@ -1,10 +1,13 @@
 "use client";
 
+import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import Image from "next/image";
 
 const Navbar = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
+
   return (
     <nav className="navbar m-auto max-w-[1920px] ">
       <div className="navbar-start">
@@ -28,7 +31,7 @@ const Navbar = () => {
               <a>Sign Up</a>
             </li>
             <li>
-              <a>Log In</a>
+              <a onClick={loginModal.onOpen}>Log In</a>
             </li>
           </ul>
         </div>

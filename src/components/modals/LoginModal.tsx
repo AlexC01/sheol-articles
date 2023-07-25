@@ -1,19 +1,24 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import axios from "axios";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import useRegisterModal from "@/hooks/useRegisterModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
+import useLoginModal from "@/hooks/useLoginModal";
+import useRegisterModal from "@/hooks/useRegisterModal";
+import { useRouter } from "next/navigation";
 
-const RegisterModal = () => {
+const LoginModal = () => {
+  const router = useRouter();
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -21,7 +26,6 @@ const RegisterModal = () => {
     formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
       email: "",
       password: ""
     }
@@ -29,20 +33,30 @@ const RegisterModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async data => {
     setIsLoading(true);
-    try {
-      await axios.post("/api/register", data);
-      registerModal.onClose();
-    } catch (err) {
-      toast.error("Error while signing up");
-    } finally {
-      setIsLoading(false);
-    }
+
+    signIn("credentials", {
+      ...data,
+      redirect: false
+    })
+      .then(callback => {
+        setIsLoading(false);
+        if (callback?.ok) {
+          toast.success("Logged in!");
+          router.refresh();
+          loginModal.onClose();
+        }
+        if (callback?.error) {
+          toast.error(callback.error);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome to Sheol Blogs" subtitle="Create an Account!" />
-      <Input id="name" label="name" disabled={isLoading} register={register} errors={errors} required />
+      <Heading title="Welcome back" subtitle="Login to your Account!" />
       <Input id="email" label="email" disabled={isLoading} register={register} errors={errors} required />
       <Input
         id="password"
@@ -78,10 +92,10 @@ const RegisterModal = () => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={registerModal.isOpen}
-      title="Register"
+      isOpen={loginModal.isOpen}
+      title="Login"
       actionLabel="Continue"
-      onClose={registerModal.onClose}
+      onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
@@ -89,4 +103,4 @@ const RegisterModal = () => {
   );
 };
 
-export default RegisterModal;
+export default LoginModal;
