@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Button from "../Button";
 
 interface ModalProps {
   isOpen: boolean;
@@ -134,10 +135,14 @@ const Modal: React.FC<ModalProps> = ({
                     {secondaryActionLabel}
                   </button>
                 )}
-                <button className="btn relative w-full flex-1 btn-secondary" disabled={disabled} onClick={handleSubmit}>
-                  {actionLabel}
-                </button>
+                <Button
+                  extraClasses=" relative w-full flex-1"
+                  disabled={disabled}
+                  onClick={handleSubmit}
+                  label={actionLabel}
+                />
               </div>
+              {footer}
             </div>
           </div>
         </div>
