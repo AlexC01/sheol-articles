@@ -134,7 +134,7 @@ const Modal: React.FC<ModalProps> = ({
                     {secondaryActionLabel}
                   </button>
                 )}
-                <button className="btn relative w-full flex-1" disabled={disabled} onClick={handleSubmit}>
+                <button className="btn relative w-full flex-1 btn-secondary" disabled={disabled} onClick={handleSubmit}>
                   {actionLabel}
                 </button>
               </div>
