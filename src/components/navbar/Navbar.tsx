@@ -20,7 +20,7 @@ const Navbar = () => {
         <div className="dropdown dropdown-end ml-5">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <Image src="/user.png" alt="avatar" width={32} height={32} />
+              <Image src="/images/placeholder.jpg" alt="avatar" width={32} height={32} />
             </div>
           </label>
           <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
