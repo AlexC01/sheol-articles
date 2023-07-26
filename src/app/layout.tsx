@@ -9,7 +9,7 @@ import getCurrentUser from "@/actions/getCurrentUser";
 
 const font = Poppins({
   subsets: ["latin"],
-  weight: ["400", "700"]
+  weight: ["400", "500", "600", "700", "800"]
 });
 
 export const metadata: Metadata = {
