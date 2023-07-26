@@ -33,7 +33,7 @@ const Hero = () => {
             </p>
           </div>
         </div>
-        <div className="mt-4 sosmall:mt-8 md:mt-24">
+        <div className="my-4 sosmall:mt-8 md:mt-24">
           <h2 className="text-center text-3xl font-bold">How it works:</h2>
           <div className="grid grid-cols-2 gap-5 md:gap-2 md:grid-cols-4 p-[1rem] mt-3">
             <div className="flex items-center flex-col text-center gap-2">
