@@ -51,7 +51,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
               text-neutral-600"
           >
             <TbPhotoPlus size={40} />
-            <div className="font-semibold text-lg">Click to upload an image</div>
+            <div className="font-semibold text-lg text-center">Click to upload an image</div>
             {value && (
               <div className="absolute inset-0 w-full h-full">
                 <Image alt="Upload" fill style={{ objectFit: "cover" }} src={value} />

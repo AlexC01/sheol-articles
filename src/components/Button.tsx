@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
       className={`btn ${extraClasses} ${
         outline
           ? "bg-white border-2 border-black hover:border-black hover:bg-black/5"
-          : "btn-secondary hover:opacity-80"
+          : "btn-secondary hover:opacity-80 text-white"
       }`}
     >
       {loading && <span className="loading loading-spinner" />}

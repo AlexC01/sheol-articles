@@ -37,13 +37,11 @@ const Modal: React.FC<ModalProps> = ({
   }, [isOpen]);
 
   const handleClose = useCallback(() => {
-    if (disabled) return;
-
     setShowModal(false);
     setTimeout(() => {
       onClose();
     }, 300);
-  }, [disabled, onClose]);
+  }, [onClose]);
 
   const handleSubmit = useCallback(() => {
     if (disabled) return;
@@ -66,7 +64,7 @@ const Modal: React.FC<ModalProps> = ({
     items-center 
     flex 
     overflow-x-hidden 
-    overflow-y-auto 
+    overflow-y-hidden
     fixed 
     inset-0 
     z-50 
@@ -75,32 +73,31 @@ const Modal: React.FC<ModalProps> = ({
     bg-neutral-800/70"
     >
       <div
-        className="
+        className={`
           relative
           w-full
           md:w-4/6
           lg:w-3/6
           xl:w-2/5
+          2xl:w-1/4
+          max-h-[800px]
+          overflow-y-auto
           my-6
           mx-auto
-          h-full
-          lg:h-auto
-          md:h-auto
-      "
-      >
-        <div
-          className={`translate 
+          bg-white
+          overflow-x-hidden
+          translate
           duration-300
-          h-full
+          border-0
+          rounded-lg
+          shadow-lg
           ${showModal ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}
-            `}
-        >
+          `}
+      >
+        <div>
           <div
             className="
               translate
-              h-full
-              lg:h-auto
-              md:h-auto
               border-0
               rounded-lg
               shadow-lg
