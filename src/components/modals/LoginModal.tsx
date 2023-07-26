@@ -77,12 +77,15 @@ const LoginModal = () => {
       <Button outline onClick={() => signIn("github")} label="Continue with Github" icon={AiFillGithub} />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="flex flex-row items-center justify-center gap-2">
-          <div>Already have an account?</div>
+          <div>Have not created an account?</div>
           <div
-            onClick={registerModal.onClose}
+            onClick={() => {
+              loginModal.onClose();
+              registerModal.onOpen();
+            }}
             className="text-neutral-800 cursor-pointer hover:underline font-semibold"
           >
-            Log In
+            Sign Up
           </div>
         </div>
       </div>
@@ -99,6 +102,7 @@ const LoginModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
+      loading={isLoading}
     />
   );
 };

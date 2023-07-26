@@ -10,6 +10,7 @@ interface ModalProps {
   title?: string;
   body?: React.ReactElement;
   footer?: React.ReactElement;
+  loading?: boolean;
   actionLabel: string;
   disabled?: boolean;
   secondaryAction?: () => void;
@@ -26,6 +27,7 @@ const Modal: React.FC<ModalProps> = ({
   actionLabel,
   disabled,
   secondaryAction,
+  loading,
   secondaryActionLabel
 }) => {
   const [showModal, setShowModal] = useState(false);
@@ -140,6 +142,7 @@ const Modal: React.FC<ModalProps> = ({
                   disabled={disabled}
                   onClick={handleSubmit}
                   label={actionLabel}
+                  loading={loading}
                 />
               </div>
               {footer}
