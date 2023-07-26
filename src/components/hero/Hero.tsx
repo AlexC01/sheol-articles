@@ -55,6 +55,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
+        <hr />
       </div>
     </section>
   );
