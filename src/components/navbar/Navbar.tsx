@@ -1,10 +1,12 @@
 "use client";
 
+import { useCallback } from "react";
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/types";
+import useArticleModal from "@/hooks/useArticleModal";
 
 interface NavbarProps {
   currentUser?: SafeUser | null;
@@ -13,6 +15,15 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const articleModal = useArticleModal();
+
+  const onCreateArticle = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    articleModal.onOpen();
+  }, [currentUser, loginModal, articleModal]);
 
   return (
     <nav className="navbar flex-wrap md:flex-nowrap border-b-[1px] shadow-sm">
@@ -27,11 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         </div>
         <div className="navbar-end">
           <button
-            onClick={() => {
-              if (!currentUser) {
-                loginModal.onOpen();
-              }
-            }}
+            onClick={onCreateArticle}
             className="btn hidden sosmall:block text-white capitalize btn-secondary hover:opacity-80"
           >
             New Article
@@ -67,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                     <a>My Articles</a>
                   </li>
                   <li className="font-semibold block sosmall:hidden">
-                    <a>New Article</a>
+                    <a onClick={onCreateArticle}>New Article</a>
                   </li>
                   <li className="font-semibold">
                     <a onClick={() => signOut()}>Log Out</a>
