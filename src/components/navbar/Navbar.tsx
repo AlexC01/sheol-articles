@@ -7,12 +7,14 @@ import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/types";
 import useArticleModal from "@/hooks/useArticleModal";
+import { useRouter } from "next/navigation";
 
 interface NavbarProps {
   currentUser?: SafeUser | null;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
+  const router = useRouter();
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const articleModal = useArticleModal();
@@ -29,7 +31,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
     <nav className="navbar flex-wrap md:flex-nowrap border-b-[1px] shadow-sm">
       <div className="navbar max-w-[1920px] m-auto">
         <div className="navbar-start">
-          <span className="btn btn-ghost normal-case text-xl">TechTales AI</span>
+          <span className="btn btn-ghost normal-case text-xl" onClick={() => router.push("/")}>
+            TechTales AI
+          </span>
         </div>
         <div className="navbar-center hidden md:block">
           <div className="form-control">

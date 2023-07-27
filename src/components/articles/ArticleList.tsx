@@ -18,6 +18,7 @@ const ArticleList = async () => {
           author={article.author.name}
           image={article.image ?? ""}
           date={article.createdAt}
+          id={article.id}
         />
       ))}
     </div>

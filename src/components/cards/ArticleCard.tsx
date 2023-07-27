@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { useRouter } from "next/navigation";
 dayjs.extend(customParseFormat);
 
 interface ArticleCardProps {
@@ -9,11 +12,16 @@ interface ArticleCardProps {
   content: string;
   author: string;
   image: string;
+  id: string;
 }
 
-const ArticleCard: React.FC<ArticleCardProps> = ({ title, date, content, author, image }) => {
+const ArticleCard: React.FC<ArticleCardProps> = ({ title, date, content, author, image, id }) => {
+  const router = useRouter();
   return (
-    <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg border-black border-[1px] ">
+    <article
+      onClick={() => router.push(`/articles/${id}`)}
+      className="overflow-hidden rounded-lg shadow transition hover:shadow-lg border-black border-[1px] cursor-pointer"
+    >
       <Image alt="Article Image" className="h-56 w-full object-cover" width={450} height={450} src={image} />
       <div className="bg-white p-4 sm:p-6 ">
         <div className="flex justify-between">
