@@ -10,22 +10,37 @@ interface InputProps {
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  textArea?: boolean;
+  rows?: number;
 }
 
-const Input: React.FC<InputProps> = ({ id, label, type, disabled, required, register, errors }) => {
+const Input: React.FC<InputProps> = ({ id, label, type, disabled, required, register, errors, textArea, rows }) => {
   return (
     <div className="w-full relative">
-      <input
-        className={`peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
+      {textArea && (
+        <textarea
+          className={`peer w-full pt-3 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
+            pl-4 ${errors[id] ? "border-rose-500 focus:border-rose-500" : "border-neutral-300 focus:border-black"}`}
+          id={id}
+          disabled={disabled}
+          rows={rows ?? 3}
+          {...register(id, { required })}
+          placeholder={label}
+        />
+      )}
+      {!textArea && (
+        <>
+          <input
+            className={`peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
         pl-4 ${errors[id] ? "border-rose-500 focus:border-rose-500" : "border-neutral-300 focus:border-black"}`}
-        id={id}
-        type={type ?? "text"}
-        disabled={disabled}
-        {...register(id, { required })}
-        placeholder=" "
-      />
-      <label
-        className={`
+            id={id}
+            type={type ?? "text"}
+            disabled={disabled}
+            {...register(id, { required })}
+            placeholder=" "
+          />
+          <label
+            className={`
         absolute
         text-md
         duration-150
@@ -42,9 +57,11 @@ const Input: React.FC<InputProps> = ({ id, label, type, disabled, required, regi
         capitalize
         ${errors[id] ? "text-rose-500" : "text-zinc-400"}
       `}
-      >
-        {label}
-      </label>
+          >
+            {label}
+          </label>
+        </>
+      )}
     </div>
   );
 };

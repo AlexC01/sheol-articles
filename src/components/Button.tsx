@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
           : "btn-secondary hover:opacity-80 text-white"
       }`}
     >
-      {loading && <span className="loading loading-spinner" />}
+      {loading && <span className="loading loading-dots" />}
       {Icon && <Icon />}
       {label}
     </button>
