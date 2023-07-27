@@ -6,6 +6,7 @@ const getArticles = async () => {
       orderBy: {
         createdAt: "desc"
       },
+      take: undefined,
       include: {
         author: true
       }
