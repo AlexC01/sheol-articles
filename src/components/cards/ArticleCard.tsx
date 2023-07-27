@@ -1,8 +1,11 @@
 import Image from "next/image";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 
 interface ArticleCardProps {
   title: string;
-  date?: string;
+  date: Date;
   content: string;
   author: string;
   image: string;
@@ -16,8 +19,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ title, date, content, author,
         <div className="flex justify-between">
           <span className="block text-xs text-gray-500 font-semibold">{author}</span>
 
-          <time dateTime="2022-10-10" className="block text-xs text-gray-500">
-            10th Oct 2022
+          <time dateTime={dayjs(date).format("YYYY-MM-DD")} className="block text-xs text-gray-500">
+            {dayjs(date).format("DD MMMM YYYY")}
           </time>
         </div>
         <a>
