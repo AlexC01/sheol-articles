@@ -80,7 +80,8 @@ const Modal: React.FC<ModalProps> = ({
           lg:w-3/6
           xl:w-2/5
           2xl:w-1/4
-          max-h-[800px]
+          h-[650px]
+          md:max-h-[800px]
           overflow-y-auto
           my-6
           mx-auto
