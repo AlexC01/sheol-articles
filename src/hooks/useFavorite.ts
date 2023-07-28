@@ -16,6 +16,16 @@ const useFavorite = ({ articleId, like, currentUser }: IUserLike) => {
   const router = useRouter();
   const loginModal = useLoginModal();
 
+  const isLiked = useMemo(() => {
+    const likes = currentUser?.articlesLikes ?? [];
+    const disLikes = currentUser?.articlesDislikes ?? [];
+
+    if (likes.includes(articleId)) return true;
+    if (disLikes.includes(articleId)) return false;
+
+    return null;
+  }, [currentUser, articleId]);
+
   const hasLiked = useMemo(() => {
     const likes = currentUser?.articlesLikes ?? [];
     const disLikes = currentUser?.articlesDislikes ?? [];
@@ -43,7 +53,7 @@ const useFavorite = ({ articleId, like, currentUser }: IUserLike) => {
     }
   }, [articleId, currentUser, hasLiked, loginModal, router]);
 
-  return { hasLiked, toggleLike };
+  return { isLiked, toggleLike };
 };
 
 export default useFavorite;
