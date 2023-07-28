@@ -1,12 +1,16 @@
 import { prisma } from "@/lib/db/prisma";
 
-const getArticles = async () => {
+interface ArticlesProps {
+  limit?: number;
+}
+
+const getArticles = async (params: ArticlesProps) => {
   try {
     const articles = await prisma.article.findMany({
       orderBy: {
         createdAt: "desc"
       },
-      take: undefined,
+      take: params.limit,
       include: {
         author: true
       }

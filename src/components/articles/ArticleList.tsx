@@ -3,7 +3,7 @@ import EmptyState from "../EmptyState";
 import ArticleCard from "../cards/ArticleCard";
 
 const ArticleList = async () => {
-  const articles = await getArticles();
+  const articles = await getArticles({ limit: 4 });
 
   if (articles.length === 0) {
     return <EmptyState />;
