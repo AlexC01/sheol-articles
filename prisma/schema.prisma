@@ -8,18 +8,19 @@ datasource db {
 }
 
 model User {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  email          String    @unique
-  name           String
-  hashedPassword String?
-  image          String?
-  emailVerified  DateTime?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  articles       Article[]
-  reviews        Review[]
-  likes          Like[]
-  Account        Account[]
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  email            String    @unique
+  name             String
+  hashedPassword   String?
+  image            String?
+  emailVerified    DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  articlesLikes    String[]  @db.ObjectId
+  articlesDislikes String[]  @db.ObjectId
+  articles         Article[]
+  reviews          Review[]
+  Account          Account[]
 
   @@map("users")
 }
@@ -56,20 +57,8 @@ model Article {
   reviews       Review[]
   totalLikes    Int      @default(0)
   totalDislikes Int      @default(0)
-  likes         Like[]
 
   @@map("articles")
-}
-
-model Like {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  user       User     @relation(fields: [userId], references: [id])
-  userId     String   @db.ObjectId
-  likeStatus Boolean
-  article    Article? @relation(fields: [articleId], references: [id])
-  articleId  String?  @db.ObjectId
-
-  @@map("likes")
 }
 
 model Review {
