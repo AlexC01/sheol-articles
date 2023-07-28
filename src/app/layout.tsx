@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "@/actions/getCurrentUser";
 import ArticleModal from "@/components/modals/ArticleModal";
+import Footer from "@/components/footer/Footer";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <ArticleModal />
         <Navbar currentUser={currentUser} />
         {children}
+        <Footer />
       </body>
     </html>
   );
