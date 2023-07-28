@@ -28,7 +28,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ title, date, content, author,
           <span className="block text-xs text-gray-500 font-semibold">{author}</span>
 
           <time dateTime={dayjs(date).format("YYYY-MM-DD")} className="block text-xs text-gray-500">
-            {dayjs(date).format("DD MMMM YYYY")}
+            {dayjs(date).format("MMMM DD, YYYY")}
           </time>
         </div>
         <a>
