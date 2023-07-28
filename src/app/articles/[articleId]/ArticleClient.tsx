@@ -25,7 +25,7 @@ const ArticleClient: React.FC<ArticleClientProps> = ({ article, currentUser }) =
   });
 
   return (
-    <div className="max-w-[75ch] mx-auto mt-10">
+    <div className="max-w-[75ch] mx-auto mt-10 px-5 sm:px-8 md:px-10 lg:px-0">
       <section>
         <h1 className="text-4xl font-bold">{article.title}</h1>
         <Image
@@ -33,13 +33,13 @@ const ArticleClient: React.FC<ArticleClientProps> = ({ article, currentUser }) =
           alt={`Image from article: ${article.title}`}
           width={1200}
           height={900}
-          className="h-96 w-full object-cover mt-8 rounded-lg shadow-md"
+          className="sm:h-96 w-full object-cover mt-8 rounded-lg shadow-md"
         />
-        <div className="mt-4 flex justify-between">
+        <div className="mt-4 flex flex-col justify-between sm:flex-row">
           <p className="text-gray-500 text-sm">
             By {article.author.name} on {dayjs(article.createdAt).format("MMMM DD, YYYY")}
           </p>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 mt-2 sm:mt-0">
             <div className="flex items-center">
               <button className="btn-ghost rounded-lg" onClick={toggleLike}>
                 <AiOutlineLike fill={hasLiked ? "red" : ""} />
