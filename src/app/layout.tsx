@@ -23,14 +23,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const currentUser = await getCurrentUser();
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={`${font.className}`}>
         <Toaster />
         <LoginModal />
         <RegisterModal />
         <ArticleModal />
-        <Navbar currentUser={currentUser} />
-        {children}
-        <Footer />
+        <div className="flex flex-col min-h-screen">
+          <Navbar currentUser={currentUser} />
+          <div className="mb-10">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
