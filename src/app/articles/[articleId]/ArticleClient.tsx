@@ -2,21 +2,23 @@
 
 import { SafeUser } from "@/types";
 import dayjs from "dayjs";
-import { Article, User } from "@prisma/client";
+import { Article, User, Review } from "@prisma/client";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import Image from "next/image";
 import useFavorite from "@/hooks/useFavorite";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import ArticleComments from "./ArticleComments";
 dayjs.extend(customParseFormat);
 
 interface ArticleClientProps {
   article: Article & {
     author: User;
   };
+  reviews: Array<Review & { author: User }>;
   currentUser?: SafeUser | null;
 }
 
-const ArticleClient: React.FC<ArticleClientProps> = ({ article, currentUser }) => {
+const ArticleClient: React.FC<ArticleClientProps> = ({ article, currentUser, reviews }) => {
   const { isLiked: hasLiked, toggleLike } = useFavorite({ articleId: article.id, like: true, currentUser });
   const { isLiked: isDisliked, toggleLike: toggleDislike } = useFavorite({
     articleId: article.id,
@@ -59,6 +61,7 @@ const ArticleClient: React.FC<ArticleClientProps> = ({ article, currentUser }) =
       <section>
         <p className="whitespace-pre-wrap text-justify">{article.content}</p>
       </section>
+      <ArticleComments reviews={reviews} articleId={article.id} currentUser={currentUser} />
     </div>
   );
 };
