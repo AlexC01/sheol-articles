@@ -55,12 +55,12 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ reviews, articleId, c
         />
         <Button extraClasses="mt-3" label="Post Comment" loading={isLoading} onClick={onSubmit} />
       </div>
-      <div className="mt-5">
+      <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
         {reviews.map(review => (
-          <div key={review.id} className="text-base rounded-lg border-[1px] shado-md mb-5">
+          <div key={review.id} className="text-base rounded-lg border-[1px] shadow-sm mb-3">
             <div className="flex items-center p-4">
               <div className="avatar">
-                <div className="w-10 h-10 rounded-full">
+                <div className="w-8 h-8 rounded-full">
                   <Image
                     src={review.author.image ?? "/images/placeholder.jpg"}
                     alt={`Profile picture of ${review.author.name}`}
@@ -69,8 +69,10 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ reviews, articleId, c
                   />
                 </div>
               </div>
-              <p className="text-sm text-gray-900 ml-2">{review.author.name}</p>
-              <p className="text-xs text-gray-600 ml-3">{dayjs(review.createdAt).format("MMMM DD, YYYY")}</p>
+              <div className="flex items-center flex-col sm:flex-row">
+                <p className="text-sm text-gray-900 ml-2">{review.author.name}</p>
+                <p className="text-xs text-gray-600 sm:ml-3">{dayjs(review.createdAt).format("MMMM DD, YYYY")}</p>
+              </div>
             </div>
             <div className="px-6 mb-5">
               <p className="text-gray-500 whitespace-pre-wrap text-justify">{review.content}</p>
