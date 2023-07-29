@@ -75,7 +75,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                     <a>My Profile</a>
                   </li>
                   <li className="font-semibold">
-                    <a>My Articles</a>
+                    <a onClick={() => router.push("/my-articles")}>My Articles</a>
                   </li>
                   <li className="font-semibold block sosmall:hidden">
                     <a onClick={onCreateArticle}>New Article</a>
