@@ -12,8 +12,6 @@ export async function POST(request: Request) {
   const body = await request.json();
   const { articleId, content } = body;
 
-  console.log(body);
-
   const article = await getArticleById({ articleId });
 
   if (!article) return NextResponse.error();

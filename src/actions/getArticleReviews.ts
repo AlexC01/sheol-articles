@@ -4,22 +4,22 @@ interface IPrarams {
   articleId?: string;
 }
 
-export const getArticleById = async (params: IPrarams) => {
+const getArticleReviews = async (params: IPrarams) => {
   try {
     const { articleId } = params;
-    const article = await prisma.article.findUnique({
+    const reviews = await prisma.review.findMany({
       where: {
-        id: articleId
+        articleId
       },
       include: {
         author: true
       }
     });
 
-    if (!article) return null;
-
-    return article;
+    return reviews;
   } catch (err: any) {
     throw new Error(err);
   }
 };
+
+export default getArticleReviews;
