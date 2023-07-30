@@ -106,7 +106,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
       </div>
       <div className="w-full block md:hidden px-4 pb-2">
         <div className="form-control">
-          <input type="text" placeholder="Search article" className="input input-bordered w-full" />
+          <input
+            type="text"
+            onChange={e => searchFunction(e.target.value)}
+            placeholder="Search article"
+            className="input input-bordered w-full"
+          />
         </div>
       </div>
     </nav>

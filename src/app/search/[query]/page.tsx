@@ -8,7 +8,9 @@ const page = ({ params }: { params: IParams }) => {
   return (
     <section>
       <div className="container mx-auto">
-        <h4 className="text-2xl font-bold mt-5">Search</h4>
+        <h4 className="text-2xl font-bold mt-5">
+          Search with: <span className="font-normal italic">{params.query}</span>
+        </h4>
       </div>
       <ArticleList
         query={params.query}
