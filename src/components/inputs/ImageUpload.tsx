@@ -12,9 +12,10 @@ declare global {
 interface ImageUploadProps {
   onChange: (value: string) => void;
   value: string;
+  profile?: boolean;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value, profile }) => {
   const handleUpload = useCallback(
     (result: any) => {
       onChange(result.info.secure_url);
@@ -33,27 +34,25 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
         return (
           <div
             onClick={() => open?.()}
-            className="
+            className={`
               relative 
               cursor-pointer 
               hover:opacity-70 
               transition 
-              border-dashed 
-              border-2 
-              rounded-lg
-              p-16 
               border-neutral-300 
               flex 
               flex-col 
               justify-center 
               items-center 
               gap-4 
-              text-neutral-600"
+              text-neutral-600
+              ${profile ? "w-32 h-32 avatar mx-auto rounded-full" : "border-dashed border-2 p-16 rounded-lg"}
+            `}
           >
             <TbPhotoPlus size={40} />
             <div className="font-semibold text-lg text-center">Click to upload an image</div>
             {value && (
-              <div className="absolute inset-0 w-full h-full">
+              <div className={`${profile ? "rounded-full" : ""} absolute inset-0 w-full h-full`}>
                 <Image alt="Upload" fill style={{ objectFit: "cover" }} src={value} />
               </div>
             )}

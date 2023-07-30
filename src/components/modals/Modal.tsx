@@ -85,13 +85,11 @@ const Modal: React.FC<ModalProps> = ({
           overflow-y-auto
           my-6
           mx-auto
-          bg-white
           overflow-x-hidden
           translate
           duration-300
           border-0
           rounded-lg
-          shadow-lg
           ${showModal ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}
           `}
       >
