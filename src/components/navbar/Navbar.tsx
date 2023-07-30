@@ -8,6 +8,7 @@ import { signOut } from "next-auth/react";
 import { SafeUser } from "@/types";
 import useArticleModal from "@/hooks/useArticleModal";
 import { useRouter } from "next/navigation";
+import useProfileModal from "@/hooks/useProfileModal";
 
 interface NavbarProps {
   currentUser?: SafeUser | null;
@@ -15,6 +16,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const router = useRouter();
+  const profileModal = useProfileModal();
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const articleModal = useArticleModal();
@@ -72,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
                   <li className="pt-2 ml-2 ">Welcome {currentUser.name.split(" ")[0]}</li>
                   <hr className="mt-2 mb-2" />
                   <li className="font-semibold">
-                    <a>My Profile</a>
+                    <a onClick={profileModal.onOpen}>My Profile</a>
                   </li>
                   <li className="font-semibold">
                     <a onClick={() => router.push("/my-articles")}>My Articles</a>

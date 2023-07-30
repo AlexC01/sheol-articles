@@ -8,6 +8,7 @@ import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "@/actions/getCurrentUser";
 import ArticleModal from "@/components/modals/ArticleModal";
 import Footer from "@/components/footer/Footer";
+import ProfileModal from "@/components/modals/ProfileModal";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Toaster />
         <LoginModal />
         <RegisterModal />
+        <ProfileModal currentUser={currentUser} />
         <ArticleModal />
         <div className="flex flex-col min-h-screen">
           <Navbar currentUser={currentUser} />
