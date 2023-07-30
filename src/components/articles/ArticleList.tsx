@@ -6,10 +6,12 @@ interface ArticleListProps {
   userId?: string;
   titleEmpty?: string;
   subtitleEmpty?: string;
+  query?: string;
+  limit?: number;
 }
 
-const ArticleList: React.FC<ArticleListProps> = async ({ userId, titleEmpty, subtitleEmpty }) => {
-  const articles = await getArticles({ limit: 4, userId });
+const ArticleList: React.FC<ArticleListProps> = async ({ userId, titleEmpty, subtitleEmpty, limit, query }) => {
+  const articles = await getArticles({ limit, userId, search: query });
 
   if (articles.length === 0) {
     return <EmptyState title={titleEmpty} subtitle={subtitleEmpty} />;

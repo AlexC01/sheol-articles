@@ -9,6 +9,7 @@ import { SafeUser } from "@/types";
 import useArticleModal from "@/hooks/useArticleModal";
 import { useRouter } from "next/navigation";
 import useProfileModal from "@/hooks/useProfileModal";
+import { debounce } from "lodash";
 
 interface NavbarProps {
   currentUser?: SafeUser | null;
@@ -29,6 +30,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
     articleModal.onOpen();
   }, [currentUser, loginModal, articleModal]);
 
+  const searchArticle = (value: string) => {
+    if (value === "") return router.push("/");
+    router.push(`/search/${value}`);
+  };
+
+  const searchFunction = debounce(searchArticle, 600);
+
   return (
     <nav className="navbar flex-wrap md:flex-nowrap border-b-[1px] shadow-sm">
       <div className="navbar max-w-[1920px] m-auto">
@@ -39,7 +47,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         </div>
         <div className="navbar-center hidden md:block">
           <div className="form-control">
-            <input type="text" placeholder="Search article" className="input input-bordered w-24 md:w-auto" />
+            <input
+              onChange={e => searchFunction(e.target.value)}
+              type="text"
+              placeholder="Search article"
+              className="input input-bordered w-24 md:w-auto"
+            />
           </div>
         </div>
         <div className="navbar-end">

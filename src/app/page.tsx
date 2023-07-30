@@ -10,7 +10,7 @@ export default function Home() {
       <section>
         <h4 className="text-center text-2xl font-bold mt-5">Latest Articles</h4>
         <Suspense fallback={<SkeletonCard />}>
-          <ArticleList />
+          <ArticleList limit={4} />
         </Suspense>
       </section>
     </main>
