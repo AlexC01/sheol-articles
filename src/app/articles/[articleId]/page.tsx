@@ -3,6 +3,7 @@ import getCurrentUser from "@/actions/getCurrentUser";
 import EmptyState from "@/components/EmptyState";
 import ArticleClient from "./ArticleClient";
 import getArticleReviews from "@/actions/getArticleReviews";
+import PageWrapper from "@/components/PageWrapper";
 
 interface IParams {
   articleId?: string;
@@ -16,7 +17,11 @@ const ArticlePage = async ({ params }: { params: IParams }) => {
   if (!article) {
     return <EmptyState />;
   }
-  return <ArticleClient article={article} currentUser={currentUser} reviews={reviews} />;
+  return (
+    <PageWrapper>
+      <ArticleClient article={article} currentUser={currentUser} reviews={reviews} />
+    </PageWrapper>
+  );
 };
 
 export default ArticlePage;
