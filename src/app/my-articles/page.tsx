@@ -7,7 +7,7 @@ const MyArticles = async () => {
   return (
     <PageWrapper>
       <section>
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4 md:px-0">
           <h4 className="text-2xl font-bold mt-5">Your Articles</h4>
         </div>
         <ArticleList

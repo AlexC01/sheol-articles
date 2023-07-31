@@ -7,7 +7,7 @@ interface IParams {
 const page = ({ params }: { params: IParams }) => {
   return (
     <section>
-      <div className="container mx-auto">
+      <div className="px-3 md:px-0 container mx-auto">
         <h4 className="text-2xl font-bold mt-5">
           Search with: <span className="font-normal italic">{params.query}</span>
         </h4>
