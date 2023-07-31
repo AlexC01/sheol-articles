@@ -1,4 +1,4 @@
-# Portfolio
+# Tecthales AI
 
 ![](public/images/webpage.png)
 
