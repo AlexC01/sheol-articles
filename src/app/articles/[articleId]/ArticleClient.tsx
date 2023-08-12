@@ -59,7 +59,7 @@ const ArticleClient: React.FC<ArticleClientProps> = ({ article, currentUser, rev
       </section>
       <hr className="my-5" />
       <section>
-        <p className="whitespace-pre-wrap text-justify">{article.content}</p>
+        <p className="whitespace-pre-wrap">{article.content}</p>
       </section>
       <ArticleComments reviews={reviews} articleId={article.id} currentUser={currentUser} />
     </div>
